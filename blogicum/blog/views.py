@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
+from django.http import Http404
 
-# Create your views here.
+
 posts = [
     {
         'id': 0,
@@ -48,13 +49,16 @@ posts = [
 
 def index(request):
     template = 'blog/index.html'
-    context = {'posts': reversed(posts)}
+    context = {'posts': posts}
     return render(request, template, context)
 
 
 def post_detail(request, id):
+    post = next((post for post in posts if post['id'] == id), None)
+    if post is None:
+        raise Http404("The requested resource was not found on this server.")
     template = 'blog/detail.html'
-    context = {'post': posts[id]}
+    context = {'post': post}
     return render(request, template, context)
 
 
