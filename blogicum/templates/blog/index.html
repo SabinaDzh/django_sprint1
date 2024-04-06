@@ -3,9 +3,9 @@
   Лента записей
 {% endblock %}	   
 {% block content %}
-  <h1>Лента записей</h1>
-  <article>                        
-    {% for post in posts|dictsortreversed:'id' %}
+  <h1>Лента записей</h1>                       
+  {% for post in posts|dictsortreversed:'id' %}
+    <article> 
       <hr>
       <ul>
         <li>
@@ -20,7 +20,7 @@
       </ul>
       <p>{{ post.text|truncatewords:10 }}</p>
       <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
-    {% endfor %}
-  </article>
+    </article>
+  {% endfor %}
 {% endblock %}
 
