@@ -5,22 +5,22 @@
 {% block content %}
   <h1>Лента записей</h1>                       
   {% for post in posts|dictsortreversed:'id' %}
-    <article> 
-      <hr>
-      <ul>
-        <li>
-          <p>Место: {{ post.location }} </p>            
-        </li>
-        <li>
-          <p>Дата: {{ post.date }}</p>
-        </li>
-        <li>
-          <p>Категория:  <a href="{% url 'blog:category_posts' category_slug=post.category %}">{{ post.category }}</a></p>
-        </li>
-      </ul>
-      <p>{{ post.text|truncatewords:10 }}</p>
-      <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
-    </article>
+  <hr>  
+  <article> 
+    <ul>
+      <li>
+        <p>Место: {{ post.location }} </p>            
+      </li>
+      <li>
+        <p>Дата: {{ post.date }}</p>
+      </li>
+      <li>
+        <p>Категория:  <a href="{% url 'blog:category_posts' category_slug=post.category %}">{{ post.category }}</a></p>
+      </li>
+    </ul>
+    <p>{{ post.text|truncatewords:10 }}</p>
+    <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
+  </article>
   {% endfor %}
 {% endblock %}
 

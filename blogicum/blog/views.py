@@ -53,8 +53,8 @@ def index(request):
 
 
 def post_detail(request, id):
-    post_dict = {post['id']: post for post in posts}
-    post = post_dict.get(id)
+    generator = {post['id']: post for post in posts}
+    post = generator.get(id)
     if post is None:
         raise Http404(f'The post with id {id} was not found on this server.')
     template = 'blog/detail.html'
